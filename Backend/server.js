@@ -152,7 +152,7 @@ app.use((err, req, res, next) => {
 
 // Start server
 try {
-    app.listen(port, () => {
+       app.listen(port, '0.0.0.0', () => {
         console.log(`Server running on http://localhost:${port}`);
         console.log(`Employee Dashboard: http://localhost:${port}/`);
         console.log(`HR Dashboard: http://localhost:${port}/hr`);
