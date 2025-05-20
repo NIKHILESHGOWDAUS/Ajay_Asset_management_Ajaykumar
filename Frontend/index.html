@@ -342,7 +342,7 @@
                         if (!response.ok) {
                             let errorMessage = `HTTP ${response.status}`;
                             if (response.status === 404) {
-                                errorMessage = 'API endpoint not found. Ensure the server is running on http://localhost:3000.';
+                                errorMessage = 'API endpoint not found. Ensure the server is running on http://54.166.206.245:3018.';
                             }
                             throw new Error(errorMessage);
                         }
@@ -361,7 +361,7 @@
             // Check server health
             async function checkServerHealth() {
                 try {
-                    const response = await fetchWithRetry('http://localhost:3000/health', {}, 3, 1000);
+                    const response = await fetchWithRetry('http://54.166.206.245:3018/health', {}, 3, 1000);
                     await response.json();
                     return true;
                 } catch (err) {
@@ -400,9 +400,9 @@
                 try {
                     const healthOk = await checkServerHealth();
                     if (!healthOk) {
-                        throw new Error('Server is not responding on http://localhost:3000.');
+                        throw new Error('Server is not responding on http://54.166.206.245:3018.');
                     }
-                    const response = await fetchWithRetry('http://localhost:3000/api/requests', {
+                    const response = await fetchWithRetry('http://54.166.206.245:3018/api/requests', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(requestData)
@@ -422,9 +422,9 @@
                 try {
                     const healthOk = await checkServerHealth();
                     if (!healthOk) {
-                        throw new Error('Server is not responding on http://localhost:3000.');
+                        throw new Error('Server is not responding on http://54.166.206.245:3018.');
                     }
-                    const response = await fetchWithRetry('http://localhost:3000/api/requests');
+                    const response = await fetchWithRetry('http://54.166.206.245:3018/api/requests');
                     const requests = await response.json();
                     const allocatedContainer = document.getElementById('allocated-container');
                     const requestedContainer = document.getElementById('requested-container');

@@ -3,14 +3,14 @@ const { Pool } = require('pg');
 const cors = require('cors');
 const path = require('path');
 const app = express();
-const port = 3000;
+const port = 3018;
 
 // Database configuration (hardcoded)
 const pool = new Pool({
     user: 'postgres',
-    host: 'localhost',
+    host: 'postgres',
     database: 'new_employee_db',
-    password: 'Password@12345',
+    password: 'admin123',
     port: 5432,
 });
 
@@ -153,9 +153,9 @@ app.use((err, req, res, next) => {
 // Start server
 try {
        app.listen(port, '0.0.0.0', () => {
-        console.log(`Server running on http://localhost:${port}`);
-        console.log(`Employee Dashboard: http://localhost:${port}/`);
-        console.log(`HR Dashboard: http://localhost:${port}/hr`);
+        console.log(`Server running on http://54.166.206.245:${port}`);
+        console.log(`Employee Dashboard: http://54.166.206.245:${port}/`);
+        console.log(`HR Dashboard: http://54.166.206.245:${port}/hr`);
         console.log(`API Endpoints:`);
         console.log(`- GET /test`);
         console.log(`- GET /health`);
