@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres_db2
+    environment:
+      POSTGRES_DB: new_employee_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - "5446:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - ajaynet
+
+  backend:
+    build:
+      context: ./Backend
+    container_name: backend_service2
+    ports:
+      - "3018:3018"
+    depends_on:
+      - postgres
+    networks:
+      - ajaynet
+
+  frontend:
+    build:
+      context: ./Frontend
+    container_name: frontend_service2
+    ports:
+      - "8131:80"
+    networks:
+      - ajaynet
+
+  hr_page:
+    build:
+      context: ./Hr_Page
+    container_name: hrpage_service2
+    ports:
+      - "8132:80"
+    networks:
+      - ajaynet
+
+volumes:
+  pgdata:
+
+networks:
+  ajaynet:
+
