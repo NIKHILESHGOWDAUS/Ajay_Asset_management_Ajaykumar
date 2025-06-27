@@ -3,7 +3,7 @@ version: '3.8'
 services:
   postgres:
     image: postgres:14
-    container_name: postgres_db2
+    container_name: postgres_db
     environment:
       POSTGRES_DB: new_employee_db
       POSTGRES_USER: postgres
@@ -14,40 +14,52 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - ajaynet
+      - asset_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   backend:
     build:
       context: ./Backend
-    container_name: backend_service2
+    container_name: backend_service
     ports:
       - "3425:3425"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=admin123
+      - DB_NAME=new_employee_db
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
-      - ajaynet
+      - asset_network
 
   frontend:
     build:
       context: ./Frontend
-    container_name: frontend_service2
+    container_name: frontend_service
     ports:
-      - 8047:80"
+      - "8047:80"
     networks:
-      - ajaynet
+      - asset_network
 
   hr_page:
     build:
       context: ./Hr_Page
-    container_name: hrpage_service2
+    container_name: hrpage_service
     ports:
       - "8048:80"
     networks:
-      - ajaynet
+      - asset_network
 
 volumes:
   pgdata:
 
 networks:
-  ajaynet:
-
+  asset_network:
+    driver: bridge
