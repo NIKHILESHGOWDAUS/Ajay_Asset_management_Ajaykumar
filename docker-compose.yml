@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin123
     ports:
-      - "5446:5432"
+      - "5425:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -21,7 +21,7 @@ services:
       context: ./Backend
     container_name: backend_service2
     ports:
-      - "3018:3018"
+      - "3425:3425"
     depends_on:
       - postgres
     networks:
@@ -32,7 +32,7 @@ services:
       context: ./Frontend
     container_name: frontend_service2
     ports:
-      - "8131:80"
+      - 8047:80"
     networks:
       - ajaynet
 
@@ -41,7 +41,7 @@ services:
       context: ./Hr_Page
     container_name: hrpage_service2
     ports:
-      - "8132:80"
+      - "8048:80"
     networks:
       - ajaynet
 
