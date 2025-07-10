@@ -190,14 +190,12 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            table-layout: fixed; /* Ensures consistent column widths */
         }
 
         th, td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid #eee;
-            vertical-align: middle; /* Aligns content vertically in the middle */
         }
 
         th {
@@ -206,11 +204,6 @@
             color: var(--dark);
             position: sticky;
             top: 0;
-            text-align: center; /* Center-align headers for better alignment */
-        }
-
-        td {
-            text-align: center; /* Center-align data cells for consistency */
         }
 
         tr:hover {
@@ -605,7 +598,7 @@
                     <i class="fas fa-file-alt"></i>
                     Request Details
                 </h3>
-                <button class="modal-close">×</button>
+                <button class="modal-close">&times;</button>
             </div>
             <div class="modal-body" id="viewModalBody">
                 <!-- Details will be loaded here -->
@@ -627,7 +620,7 @@
                     <i class="fas fa-question-circle"></i>
                     Confirm Action
                 </h3>
-                <button class="modal-close">×</button>
+                <button class="modal-close">&times;</button>
             </div>
             <div class="modal-body">
                 <p class="modal-message" id="modalMessage">Are you sure you want to perform this action?</p>
