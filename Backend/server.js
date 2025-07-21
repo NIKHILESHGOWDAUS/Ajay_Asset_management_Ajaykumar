@@ -5,7 +5,7 @@ const cors = require('cors');
 const retry = require('async-retry');
 
 const app = express();
-const port = process.env.PORT || 3425;
+const port = process.env.PORT || 3631;
 
 // Database configuration
 const dbConfig = {
@@ -44,7 +44,7 @@ const initApp = async () => {
 
     // Middleware
     app.use(cors({
-      origin: ['http://44.223.23.145:8047', 'http://44.223.23.145:8048'],
+      origin: ['http://52.90.136.192:8047', 'http://52.90.136.192:8048'],
       methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
       allowedHeaders: ['Content-Type']
     }));
