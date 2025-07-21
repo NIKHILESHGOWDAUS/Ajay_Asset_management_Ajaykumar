@@ -44,7 +44,7 @@ const initApp = async () => {
 
     // Middleware
     app.use(cors({
-      origin: ['http://52.90.136.192:8047', 'http://52.90.136.192:8048'],
+      origin: ['http://52.90.136.192:8640', 'http://52.90.136.192:8641','http://52.90.136.192:3631' ],
       methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
       allowedHeaders: ['Content-Type']
     }));
